@@ -1,0 +1,23 @@
+# Participant data: never commit
+data/
+uploads/
+*.mp4
+*.mov
+*.avi
+*.db
+*.sqlite3
+
+# Python
+__pycache__/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+dist/
+
+# Env and OS
+.env
+.DS_Store
