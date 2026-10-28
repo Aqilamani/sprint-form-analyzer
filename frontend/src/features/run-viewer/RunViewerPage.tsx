@@ -29,7 +29,7 @@ export function RunViewerPage() {
 function RunViewer({ run }: { run: Run }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [localVideoUrl, setLocalVideoUrl] = useState<string>()
-  const videoSrc = localVideoUrl ?? run.metadata.videoUrl
+  const videoSrc = localVideoUrl ?? run.metadata.videoUrl ?? undefined
   const frameCount = run.frames.length
   const { frame, seekToFrame } = useVideoFrame(videoRef, run.metadata.fps, frameCount, videoSrc)
 
@@ -51,6 +51,7 @@ function RunViewer({ run }: { run: Run }) {
       <VideoPlayer
         videoRef={videoRef}
         src={videoSrc}
+        initialAspect={`${run.metadata.frameWidth} / ${run.metadata.frameHeight}`}
         onPickFile={(file) => setLocalVideoUrl(URL.createObjectURL(file))}
       >
         <SkeletonOverlay

@@ -84,8 +84,11 @@ export const RunMetadataSchema = z.object({
   startPosition: z.enum(['block', 'three_point', 'standing', 'other']),
   cameraPosition: z.enum(['side_left', 'side_right', 'front', 'other']),
   fps: z.number().positive(),
+  /** Source video size in pixels; needed to turn normalised keypoints into angles. */
+  frameWidth: z.int().positive(),
+  frameHeight: z.int().positive(),
   surface: z.string().min(1),
-  videoUrl: z.string().optional(),
+  videoUrl: z.string().nullable(),
 })
 
 export const FrameSchema = z.object({

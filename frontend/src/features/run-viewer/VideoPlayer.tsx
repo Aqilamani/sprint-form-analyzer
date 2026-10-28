@@ -3,6 +3,8 @@ import { useState, type ReactNode, type RefObject } from 'react'
 type Props = {
   videoRef: RefObject<HTMLVideoElement | null>
   src: string | undefined
+  /** CSS aspect-ratio of the run's frames, used until the video reports its own. */
+  initialAspect: string
   onPickFile: (file: File) => void
   children: ReactNode
 }
@@ -11,8 +13,8 @@ type Props = {
  * <video> with the overlay stacked on top. The box takes the video's aspect
  * ratio once metadata loads, so normalised keypoints map onto it directly.
  */
-export function VideoPlayer({ videoRef, src, onPickFile, children }: Props) {
-  const [aspect, setAspect] = useState('16 / 9')
+export function VideoPlayer({ videoRef, src, initialAspect, onPickFile, children }: Props) {
+  const [aspect, setAspect] = useState(initialAspect)
 
   return (
     <div className="space-y-2">
